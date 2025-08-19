@@ -1,23 +1,23 @@
 # Introduction
 
-Welcome to **RepoGPT** – an AI-powered coding companion designed to revolutionize how developers interact with codebases. Unlike generic coding tools, RepoGPT deeply understands your entire repository, providing context-aware assistance that transforms documentation navigation, code exploration, and project comprehension.
+Welcome to **codeFlux** – an AI-powered coding companion designed to revolutionize how developers interact with their codebases. Unlike generic coding tools, codeFlux deeply understands your entire repository, providing context-aware assistance that transforms documentation navigation, code exploration, and project comprehension.
 
-This documentation covers RepoGPT's architecture, features, and implementation – enabling you to deploy an intelligent coding assistant that learns from your codebase.
+This documentation covers codeFlux's architecture, features, and implementation – enabling you to deploy an intelligent coding assistant that learns from your codebase.
 
-## What is RepoGPT?
+## What is codeFlux?
 
-RepoGPT is a **repository-aware AI assistant** that leverages Large Language Models (LLMs) to answer technical questions, explain code logic, and generate documentation based on your specific codebase. By combining semantic search with AI reasoning, it acts as an expert teammate who knows every file, function, and dependency in your project.
+codeFlux is a **repository-aware AI assistant** that leverages Large Language Models (LLMs) to answer technical questions, explain code logic, and generate documentation based on your specific codebase. By combining semantic search with AI reasoning, it acts as an expert teammate who knows every file, function, and dependency in your project.
 
 Whether you're:
 - Onboarding new developers
 - Debugging legacy systems
 - Documenting complex workflows  
-RepoGPT provides precise, context-rich insights tailored to your repository.
+codeFlux provides precise, context-rich insights tailored to your repository.
 
 ## Key Features
 
 🔍 **Codebase Intelligence**  
-Ask natural language questions about your code ("How does authentication work?"). RepoGPT analyzes repo structure to deliver accurate answers.
+Ask natural language questions about your code ("How does authentication work?"). codeFlux analyzes repo structure to deliver accurate answers.
 
 📚 **Automated Documentation**  
 Generates documentation for files/functions on demand. Maintains context between queries for coherent conversations.
@@ -34,9 +34,9 @@ Query via chat UI or CLI. Perfect for local development and CI/CD pipelines.
 🔐 **Secure & Private**  
 All processing occurs locally or in your controlled infrastructure. Never sends code to third parties.
 
-## Why RepoGPT?
+## Why codeFlux?
 
-| Problem                          | RepoGPT Solution                     |
+| Problem                          | codeFlux Solution                     |
 |----------------------------------|--------------------------------------|
 | Lost context switching files     | Answers questions about **any** file |
 | Outdated/incomplete docs         | Generates docs from latest code      |
@@ -45,7 +45,7 @@ All processing occurs locally or in your controlled infrastructure. Never sends 
 
 ## Next Steps
 
-1. [Getting Started](getting_started.md) - Set up RepoGPT in 5 minutes  
+1. [Getting Started](getting_started.md) - Set up codeFlux in 5 minutes  
 2. [Architecture Overview](architecture.md) - Understand the AI/vector DB pipeline  
 3. [API Reference](api.md) - Integrate with your tools  
 4. [Use Cases](use_cases.md) - Onboarding, debugging & docs automation  
