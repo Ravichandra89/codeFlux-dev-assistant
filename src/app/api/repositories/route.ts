@@ -1,64 +1,57 @@
-import {NextRequest, NextResponse} from "next/server";
-import {PrismaClient, RepositoryStatus} from "@prisma/client";
-import {Indexer} from '@/services/indexer';
+import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient, RepositoryStatus } from "@prisma/client";
+import { Indexer } from "@/services/indexer";
+
+// Prisma singleton for serverless environments
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
+
+const prisma = global.prisma ?? new PrismaClient();
+if (!global.prisma) global.prisma = prisma;
 
 export async function POST(req: NextRequest) {
-    const db = new PrismaClient();
+  try {
+    const body = await req.json();
+    const { url, branch } = body as { url: string; branch?: string };
 
-    try {
-        const body = await req.json();
+    if (!url) throw new Error("URL is required");
 
-        const {
-            url,
-            branch,
-        } = body as {
-            url: string;
-            branch?: string;
-        };
+    const name = url.split("/").slice(-2).join("/");
 
-        if (!url) {
-            throw new Error("URL is required");
-        }
+    const repository = await prisma.repository.create({
+      data: { name, url, status: RepositoryStatus.LOADING },
+    });
 
-        // Get a name from the Github URL
-        const name = url.split('/').slice(-2).join('/');
+    // Run indexer asynchronously
+    const indexer = new Indexer();
+    indexer.run(repository.id, branch);
 
-        const repository = await db.repository.create({
-            data: {
-                name,
-                url,
-                status: RepositoryStatus.LOADING,
-            },
-        })
-
-        const indexer = new Indexer();
-
-        indexer.run(repository.id, branch);
-
-        return NextResponse.json({
-            success: true, repository: {
-                name,
-                url,
-                status: RepositoryStatus.LOADING,
-            }
-        });
-
-    } catch (e: unknown) {
-        const error = e as { message: string; status?: number };
-        console.error(error.message);
-        return NextResponse.json({error: error.message}, {status: error.status ?? 500});
-    }
+    return NextResponse.json({
+      success: true,
+      repository: { name, url, status: RepositoryStatus.LOADING },
+    });
+  } catch (e: unknown) {
+    const error = e as { message: string; status?: number };
+    console.error(error.message);
+    return NextResponse.json(
+      { error: error.message },
+      { status: error.status ?? 500 }
+    );
+  }
 }
 
 export async function GET() {
-    try {
-        const db = new PrismaClient();
-        const repositories = await db.repository.findMany();
-
-        return NextResponse.json({repositories});
-    } catch (e: unknown) {
-        const error = e as { message: string; status?: number };
-        console.error(error.message);
-        return NextResponse.json({error: error.message}, {status: error.status ?? 500});
-    }
+  try {
+    const repositories = await prisma.repository.findMany();
+    return NextResponse.json({ repositories });
+  } catch (e: unknown) {
+    const error = e as { message: string; status?: number };
+    console.error(error.message);
+    return NextResponse.json(
+      { error: error.message },
+      { status: error.status ?? 500 }
+    );
+  }
 }
