@@ -1,83 +1,3 @@
-// import { useState } from 'react';
-// import Link from 'next/link';
-// import { Menu, X, Github } from 'lucide-react';
-
-// export const Header = () => {
-//   const [menuOpen, setMenuOpen] = useState(false);
-
-//   return (
-//     <header className="sticky top-0 bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg z-50">
-//       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-//         <div className="flex justify-between items-center h-16">
-//           {/* Logo */}
-//           <Link href="/" className="flex items-center space-x-2">
-//             <span className="text-white font-extrabold text-2xl">codeFlux</span>
-//             <span className="text-white font-semibold text-sm tracking-wider">AI Dev Assistant</span>
-//           </Link>
-
-//           {/* Desktop Menu */}
-//           <nav className="hidden md:flex items-center space-x-6">
-//             <Link href="/" className="text-white hover:text-yellow-300 font-medium transition">
-//               Dashboard
-//             </Link>
-//             <Link href="/repositories" className="text-white hover:text-yellow-300 font-medium transition">
-//               Repositories
-//             </Link>
-//             <Link href="/settings" className="text-white hover:text-yellow-300 font-medium transition">
-//               Settings
-//             </Link>
-//             <a
-//               href="https://github.com/your-repo"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="text-white hover:text-yellow-300 transition"
-//             >
-//               <Github className="w-5 h-5" />
-//             </a>
-//           </nav>
-
-//           {/* Mobile Menu Button */}
-//           <div className="md:hidden flex items-center">
-//             <button
-//               onClick={() => setMenuOpen(!menuOpen)}
-//               className="text-white p-2 rounded-md hover:bg-white/20 transition"
-//               aria-label="Toggle Menu"
-//             >
-//               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {menuOpen && (
-//         <div className="md:hidden bg-gradient-to-b from-blue-600 to-purple-600 shadow-inner">
-//           <nav className="px-4 py-4 space-y-3 flex flex-col">
-//             <Link href="/" className="text-white font-medium hover:text-yellow-300" onClick={() => setMenuOpen(false)}>
-//               Dashboard
-//             </Link>
-//             <Link href="/repositories" className="text-white font-medium hover:text-yellow-300" onClick={() => setMenuOpen(false)}>
-//               Repositories
-//             </Link>
-//             <Link href="/settings" className="text-white font-medium hover:text-yellow-300" onClick={() => setMenuOpen(false)}>
-//               Settings
-//             </Link>
-//             <a
-//               href="https://github.com/your-repo"
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="text-white font-medium hover:text-yellow-300"
-//               onClick={() => setMenuOpen(false)}
-//             >
-//               GitHub
-//             </a>
-//           </nav>
-//         </div>
-//       )}
-//     </header>
-//   );
-// };
-
 "use client";
 
 import { useState } from "react";
@@ -85,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Github, Code2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -94,6 +15,7 @@ export const Header = () => {
     { href: "/", label: "Dashboard" },
     { href: "/repositories", label: "Repositories" },
     { href: "/settings", label: "Settings" },
+    {href: "/documentation", label: "Documentation"}
   ];
 
   const isActive = (href: string) => {

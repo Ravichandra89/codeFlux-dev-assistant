@@ -80,3 +80,39 @@ body {
     height: 100%;
   }
 }
+
+
+@layer base {
+  :root {
+    /* Docs sidebar */
+    --doc-sidebar: 0 0% 98%;
+    --doc-sidebar-muted: 0 0% 95%;
+    --doc-sidebar-accent: 221 83% 53%; /* blue */
+    --doc-sidebar-foreground: 222 47% 11%;
+
+    /* Docs content */
+    --doc-content: 0 0% 100%;
+    --doc-content-foreground: 222 9% 25%;
+    --doc-heading: 222 47% 11%;
+
+    /* Border + Code */
+    --doc-border: 0 0% 90%;
+    --doc-code: 0 0% 97%;
+    --doc-code-foreground: 222 47% 11%;
+  }
+
+  .dark {
+    --doc-sidebar: 222 47% 11%;
+    --doc-sidebar-muted: 222 47% 15%;
+    --doc-sidebar-accent: 221 83% 53%; /* stays blue */
+    --doc-sidebar-foreground: 0 0% 98%;
+
+    --doc-content: 222 47% 8%;
+    --doc-content-foreground: 0 0% 85%;
+    --doc-heading: 0 0% 98%;
+
+    --doc-border: 222 47% 20%;
+    --doc-code: 222 47% 15%;
+    --doc-code-foreground: 0 0% 98%;
+  }
+}
