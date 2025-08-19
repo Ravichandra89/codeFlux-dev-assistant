@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -40,6 +42,12 @@ export function MessageInput({
   selectedRepoId,
   onSelectedRepoIdChange,
 }: MessageInputProps) {
+  // ✅ Ensure hydration-safe value for Select
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey && input.trim()) {
       e.preventDefault();
@@ -67,10 +75,10 @@ export function MessageInput({
 
       <div className={`relative ${hasMessages ? "max-w-4xl mx-auto" : ""}`}>
         {/* Repository selector */}
-        {!hasMessages && (
+        {!hasMessages && mounted && (
           <div className="mb-4">
             <Select
-              value={selectedRepoId || ""}
+              value={selectedRepoId ?? ""}
               onValueChange={(nextRepo) => {
                 if (nextRepo) {
                   onSelectedRepoIdChange?.(nextRepo);

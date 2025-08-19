@@ -6,21 +6,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { EyeIcon, EyeOffIcon, KeyIcon, Github } from "lucide-react";
+import { EyeIcon, EyeOffIcon, KeyIcon } from "lucide-react";
 
 interface ConfigurationFormProps {
-  googleGeminiKey?: string;
+  openAiKey?: string;
   githubAccessToken?: string;
 }
 
-export function ConfigurationForm(props: ConfigurationFormProps) {
-  const [googleGeminiKey, setGoogleGeminiKey] = useState<string>(
-    props.googleGeminiKey ?? ""
+export function ConfigurationForm({
+  openAiKey,
+  githubAccessToken,
+}: ConfigurationFormProps) {
+  const [openAiKeyValue, setOpenAiKeyValue] = useState<string>(openAiKey ?? "");
+  const [githubToken, setGithubToken] = useState<string>(
+    githubAccessToken ?? ""
   );
-  const [githubAccessToken, setGithubAccessToken] = useState<string>(
-    props.githubAccessToken ?? ""
-  );
-  const [showGeminiKey, setShowGeminiKey] = useState<boolean>(false);
+  const [showOpenAiKey, setShowOpenAiKey] = useState<boolean>(false);
   const [showGithubKey, setShowGithubKey] = useState<boolean>(false);
   const { toast } = useToast();
 
@@ -30,7 +31,10 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
     const response = await fetch("/api/settings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ googleGeminiKey, githubAccessToken }),
+      body: JSON.stringify({
+        openAiKey: openAiKeyValue,
+        githubAccessToken: githubToken,
+      }),
     });
 
     if (!response.ok) {
@@ -60,130 +64,70 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Google Gemini API */}
+        {/* OpenAI API Key */}
         <div className="space-y-4">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-              <KeyIcon className="w-5 h-5 text-indigo-600" />
-            </div>
-            <div>
-              <Label
-                htmlFor="gemini-key"
-                className="text-lg font-semibold text-gray-800"
-              >
-                Google Gemini API Key
-              </Label>
-              <p className="text-sm text-gray-500">
-                Required for AI-powered features
-              </p>
-            </div>
-          </div>
-          <div className="relative group">
-            <Input
-              id="gemini-key"
-              type={showGeminiKey ? "text" : "password"}
-              placeholder="Enter your Google Gemini API key"
-              value={googleGeminiKey}
-              onChange={(e) => setGoogleGeminiKey(e.target.value)}
-              className="pr-12 h-12 bg-gray-50 border-gray-300 focus:border-indigo-500 focus:ring-indigo-200 transition-all duration-300"
-              required
-              minLength={32}
-            />
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700"
-              onClick={() => setShowGeminiKey(!showGeminiKey)}
-            >
-              {showGeminiKey ? (
-                <EyeOffIcon className="h-4 w-4" />
-              ) : (
-                <EyeIcon className="h-4 w-4" />
-              )}
-            </Button>
-          </div>
-          <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-4 space-y-2">
-            <p className="text-sm text-gray-600">
-              Your API key is stored securely and used for indexing and AI
-              requests.
-            </p>
-            <p className="text-sm">
-              <span className="text-gray-500">Get your API key from </span>
-              <a
-                href="https://developers.google.com/vertex-ai/docs/generative-ai/overview"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-indigo-600 hover:text-indigo-800 font-medium underline underline-offset-2 hover:no-underline transition-all"
-              >
-                Google Gemini API
-              </a>
-            </p>
-          </div>
+          <Label
+            htmlFor="openai-key"
+            className="text-lg font-semibold text-gray-800"
+          >
+            OpenAI API Key
+          </Label>
+          <Input
+            id="openai-key"
+            type={showOpenAiKey ? "text" : "password"}
+            placeholder="Enter your OpenAI API key"
+            value={openAiKeyValue}
+            onChange={(e) => setOpenAiKeyValue(e.target.value)}
+            className="pr-12 h-12 bg-gray-50 border-gray-300 focus:border-indigo-500 focus:ring-indigo-200 transition-all duration-300"
+            required
+          />
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700"
+            onClick={() => setShowOpenAiKey(!showOpenAiKey)}
+          >
+            {showOpenAiKey ? (
+              <EyeOffIcon className="h-4 w-4" />
+            ) : (
+              <EyeIcon className="h-4 w-4" />
+            )}
+          </Button>
         </div>
 
         {/* GitHub API */}
         <div className="space-y-4">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-              <Github className="w-5 h-5 text-gray-700" />
-            </div>
-            <div>
-              <Label
-                htmlFor="github-key"
-                className="text-lg font-semibold text-gray-800"
-              >
-                GitHub Access Token
-              </Label>
-              <p className="text-sm text-gray-500">
-                Required for repository access
-              </p>
-            </div>
-          </div>
-          <div className="relative group">
-            <Input
-              id="github-key"
-              type={showGithubKey ? "text" : "password"}
-              placeholder="Enter your GitHub Access Token"
-              value={githubAccessToken}
-              onChange={(e) => setGithubAccessToken(e.target.value)}
-              className="pr-12 h-12 bg-gray-50 border-gray-300 focus:border-purple-500 focus:ring-purple-200 transition-all duration-300"
-              required
-              minLength={40}
-            />
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700"
-              onClick={() => setShowGithubKey(!showGithubKey)}
-            >
-              {showGithubKey ? (
-                <EyeOffIcon className="h-4 w-4" />
-              ) : (
-                <EyeIcon className="h-4 w-4" />
-              )}
-            </Button>
-          </div>
-          <div className="bg-gray-50 border border-gray-100 rounded-lg p-4 space-y-2">
-            <p className="text-sm text-gray-600">
-              Your token is stored securely and used for cloning repositories.
-            </p>
-            <p className="text-sm">
-              <span className="text-gray-500">Create a token at </span>
-              <a
-                href="https://github.com/settings/tokens"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:text-gray-900 font-medium underline underline-offset-2 hover:no-underline transition-all"
-              >
-                GitHub Settings
-              </a>
-            </p>
-          </div>
+          <Label
+            htmlFor="github-key"
+            className="text-lg font-semibold text-gray-800"
+          >
+            GitHub Access Token
+          </Label>
+          <Input
+            id="github-key"
+            type={showGithubKey ? "text" : "password"}
+            placeholder="Enter your GitHub Access Token"
+            value={githubToken}
+            onChange={(e) => setGithubToken(e.target.value)}
+            className="pr-12 h-12 bg-gray-50 border-gray-300 focus:border-purple-500 focus:ring-purple-200 transition-all duration-300"
+            required
+          />
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700"
+            onClick={() => setShowGithubKey(!showGithubKey)}
+          >
+            {showGithubKey ? (
+              <EyeOffIcon className="h-4 w-4" />
+            ) : (
+              <EyeIcon className="h-4 w-4" />
+            )}
+          </Button>
         </div>
 
-        {/* Buttons */}
         <div className="flex flex-col gap-4 pt-6">
           <Button
             type="submit"
