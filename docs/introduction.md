@@ -1,43 +1,53 @@
 # Introduction
 
-Welcome to **CodeFlux**, an intelligent coding assistant designed to streamline development workflows and enhance productivity. CodeFlux integrates modern development practices with AI-powered assistance, making it easier for developers to write, test, and manage code with efficiency.
+Welcome to **RepoGPT** – an AI-powered coding companion designed to revolutionize how developers interact with codebases. Unlike generic coding tools, RepoGPT deeply understands your entire repository, providing context-aware assistance that transforms documentation navigation, code exploration, and project comprehension.
 
-This documentation provides an overview of the project, its features, and how it helps developers build better applications faster.
+This documentation covers RepoGPT's architecture, features, and implementation – enabling you to deploy an intelligent coding assistant that learns from your codebase.
 
----
+## What is RepoGPT?
 
-## What is CodeFlux?
+RepoGPT is a **repository-aware AI assistant** that leverages Large Language Models (LLMs) to answer technical questions, explain code logic, and generate documentation based on your specific codebase. By combining semantic search with AI reasoning, it acts as an expert teammate who knows every file, function, and dependency in your project.
 
-**CodeFlux** is a developer-focused platform that acts as a companion for coding, debugging, and learning. It combines automation, real-time assistance, and structured project management, ensuring that developers spend less time on repetitive tasks and more time on innovation.
-
-Whether you are a beginner exploring programming concepts or an experienced developer working on complex systems, CodeFlux adapts to your needs.
-
----
+Whether you're:
+- Onboarding new developers
+- Debugging legacy systems
+- Documenting complex workflows  
+RepoGPT provides precise, context-rich insights tailored to your repository.
 
 ## Key Features
 
-- 🚀 **AI-Powered Code Assistance** – Get smart code suggestions, explanations, and error handling tips.  
-- 📚 **Integrated Documentation** – Access clear, structured, and project-specific guides within the workspace.  
-- 🛠️ **Multi-Language Support** – Work with multiple programming languages seamlessly.  
-- 🔍 **Debugging Support** – Identify, analyze, and resolve issues quickly with AI-assisted debugging.  
-- ⚡ **Productivity Tools** – Includes project templates, version control integration, and automation utilities.  
-- 🌐 **Collaboration Ready** – Share code snippets, documentation, and project context with your team.  
+🔍 **Codebase Intelligence**  
+Ask natural language questions about your code ("How does authentication work?"). RepoGPT analyzes repo structure to deliver accurate answers.
 
----
+📚 **Automated Documentation**  
+Generates documentation for files/functions on demand. Maintains context between queries for coherent conversations.
 
-## Why CodeFlux?
+🌐 **Multi-Repository Support**  
+Works across projects in multiple languages (Python, JS, Java, etc.) with shared or isolated knowledge bases.
 
-Developers often face challenges such as fragmented documentation, repetitive debugging tasks, and lack of structured guidance. **CodeFlux** solves these issues by:
+⚡ **Real-Time Code Analysis**  
+Understands code dependencies and relationships – no pre-training required.
 
-- Providing context-aware AI suggestions.  
-- Keeping documentation close to the code.  
-- Encouraging clean and maintainable practices.  
-- Supporting both individual developers and team collaboration.  
+🤖 **Chat-CLI Hybrid Interface**  
+Query via chat UI or CLI. Perfect for local development and CI/CD pipelines.
 
----
+🔐 **Secure & Private**  
+All processing occurs locally or in your controlled infrastructure. Never sends code to third parties.
+
+## Why RepoGPT?
+
+| Problem                          | RepoGPT Solution                     |
+|----------------------------------|--------------------------------------|
+| Lost context switching files     | Answers questions about **any** file |
+| Outdated/incomplete docs         | Generates docs from latest code      |
+| Slow onboarding                  | Acts as 24/7 repo expert             |
+| Fragmented knowledge sharing     | Centralized Q&A for entire team      |
 
 ## Next Steps
 
-- [Explore the Getting Started Guide](#)  
-- [Learn about the Project Architecture](#)  
-- [Check out the API Reference](#)  
+1. [Getting Started](getting_started.md) - Set up RepoGPT in 5 minutes  
+2. [Architecture Overview](architecture.md) - Understand the AI/vector DB pipeline  
+3. [API Reference](api.md) - Integrate with your tools  
+4. [Use Cases](use_cases.md) - Onboarding, debugging & docs automation  
+
+[![Demo](https://img.shields.io/badge/Demo-Live_Example-green?style=for-the-badge)](demo.md)
