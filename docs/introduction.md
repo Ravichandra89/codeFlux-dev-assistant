@@ -46,7 +46,7 @@ All processing occurs locally or in your controlled infrastructure. Never sends 
 ## Next Steps
 
 1. [Getting Started](getting_started.md) - Set up codeFlux in 5 minutes  
-2. [Architecture Overview](architecture.md) - Understand the AI/vector DB pipeline  
+2. [Installation Steps](architecture.md) - Follow the Installation Steps
 3. [API Reference](api.md) - Integrate with your tools  
 4. [Use Cases](use_cases.md) - Onboarding, debugging & docs automation  
 
