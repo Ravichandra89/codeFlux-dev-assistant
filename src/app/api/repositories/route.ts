@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs"; // ensure Prisma runs in Node runtime
+
 import { NextRequest, NextResponse } from "next/server";
 import { RepositoryStatus } from "@prisma/client";
 import { Indexer } from "@/services/indexer";
