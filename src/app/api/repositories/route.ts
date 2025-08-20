@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient, RepositoryStatus } from "@prisma/client";
+import { RepositoryStatus } from "@prisma/client";
 import { Indexer } from "@/services/indexer";
-
-// Prisma singleton for serverless environments
-declare global {
-  // eslint-disable-next-line no-var
-  var prisma: PrismaClient | undefined;
-}
-
-const prisma = global.prisma ?? new PrismaClient();
-if (!global.prisma) global.prisma = prisma;
+import prisma from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   try {
