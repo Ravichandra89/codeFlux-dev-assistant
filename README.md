@@ -30,6 +30,13 @@ Full documentation is available in the [`docs`](./docs) folder:
 
 3. Start using CodeFlux by following the [Usage Guide](./docs/usage.md).
 
+---
+# 🎬 Demo Video Preview
+
+![Demo Preview](./docs/demo_preview.gif)
+
+[Watch full demo video](https://drive.google.com/file/d/1S1WWXDEGw1hSJMBixa6qVLvuxrDnAsTA/view?usp=sharing)
+
 ## 📂 Project Structure
 
 ```
